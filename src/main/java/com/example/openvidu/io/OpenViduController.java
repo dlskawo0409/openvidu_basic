@@ -36,7 +36,8 @@ public class OpenViduController {
     public ResponseEntity<Map<String, String>> createToken(@RequestBody Map<String, String> params) {
         String roomName = params.get("roomName");
         String participantName = params.get("participantName");
-
+        System.out.println(roomName);
+        System.out.println(participantName);
         if (roomName == null || participantName == null) {
             return ResponseEntity.badRequest().body(Map.of("errorMessage", "roomName and participantName are required"));
         }
