@@ -19,14 +19,8 @@ public class CorsConfig implements CorsConfigurationSource {
         // 허용할 오리진 설정 (클라이언트 도메인으로 변경하세요)
         config.setAllowedOrigins(Arrays.asList("http://localhost:3000", "http://localhost:5173", "http://localhost:8080",
                 "http://localhost:80","http://localhost:443","http://localhost:5080",
-                "http://ec2-3-35-216-33.ap-northeast-2.compute.amazonaws.com:8080",
-                "http://ec2-3-35-216-33.ap-northeast-2.compute.amazonaws.com:80",
-                "http://ec2-3-35-216-33.ap-northeast-2.compute.amazonaws.com:6080",
-                "http://ec2-3-35-216-33.ap-northeast-2.compute.amazonaws.com/**",
-                "http://3.35.216.33:80",
-                "http://3.35.216.33:8080",
-                "http://3.35.216.33:6080"
-
+                "http://70.12.247.116","http://70.12.247.116:5080",
+                "https://70.12.247.116", "https://localhost:3000"
         ));
 
         // 허용할 HTTP 메서드 설정
