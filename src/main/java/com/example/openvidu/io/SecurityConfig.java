@@ -16,7 +16,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 @RequiredArgsConstructor
 public class SecurityConfig {
     private  AuthenticationConfiguration authenticationConfiguration;
-    private final CorsConfigurationSource corsConfigurationSource;
+    private  CorsConfigurationSource corsConfigurationSource;
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
