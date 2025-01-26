@@ -57,7 +57,7 @@ public class OpenViduController {
         if (roomName == null || participantName == null) {
             return ResponseEntity.badRequest().body(Map.of("errorMessage", "roomName and participantName are required"));
         }
-
+        //s
         AccessToken token = new AccessToken(LIVEKIT_API_KEY, LIVEKIT_API_SECRET);
         token.setName(participantName);
         token.setIdentity(participantName);
