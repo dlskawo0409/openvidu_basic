@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.beans.Transient;
 import java.util.Map;
 
 import io.livekit.server.AccessToken;
@@ -13,6 +14,7 @@ import io.livekit.server.RoomJoin;
 import io.livekit.server.RoomName;
 import io.livekit.server.WebhookReceiver;
 import livekit.LivekitWebhook.WebhookEvent;
+import lombok.Synchronized;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -28,6 +30,7 @@ public class OpenViduController {
      * @param params JSON object with roomName and participantName
      * @return JSON object with the JWT token
      */
+
     @PostMapping(value = "/token")
     public ResponseEntity<Map<String, String>> createToken(@RequestBody Map<String, String> params) {
         String roomName = params.get("roomName");
@@ -45,22 +48,6 @@ public class OpenViduController {
         return ResponseEntity.ok(Map.of("token", token.toJwt()));
     }
 
-    @PostMapping(value = "/temp-token")
-    public ResponseEntity<Map<String, String>> createTempToken(@RequestBody Map<String, String> params) {
-        String roomName = params.get("roomName");
-        String participantName = "Participant100";
-
-        if (roomName == null || participantName == null) {
-            return ResponseEntity.badRequest().body(Map.of("errorMessage", "roomName and participantName are required"));
-        }
-        //s
-        AccessToken token = new AccessToken(LIVEKIT_API_KEY, LIVEKIT_API_SECRET);
-        token.setName(participantName);
-        token.setIdentity(participantName);
-        token.addGrants(new RoomJoin(true), new RoomName(roomName));
-
-        return ResponseEntity.ok(Map.of("token", token.toJwt()));
-    }
 
     @PostMapping(value = "/livekit/webhook", consumes = "application/webhook+json")
     public ResponseEntity<String> receiveWebhook(@RequestHeader("Authorization") String authHeader, @RequestBody String body) {
